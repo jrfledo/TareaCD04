@@ -1,34 +1,39 @@
 package tareacd4;
 
+import banco.CtaCorriente;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.util.Scanner;
 
 public class Main {
-
-    public static void main(String[] args) {
-        CC miCuenta;
+    static final Logger logger = Logger.getLogger(Main.class.getName());
+    public static void operativaCuenta(){
+        CtaCorriente miCuenta;
         double saldoActual;
-
-        miCuenta = new CC("Koldo García Ábalos","0001-2345-07-1234567890",5000,0);
-        saldoActual = miCuenta.estado();
-        System.out.println("El saldo inicial es de "+ saldoActual +" euros");
+        miCuenta = new CtaCorriente("Koldo García Ábalos","0001-2345-07-1234567890",5000,0);
+        saldoActual = miCuenta.getSaldocuenta();
+        logger.log(Level.INFO, "El saldo inicial es de {0} euros", saldoActual);
 
         try {
             Scanner entrada = new Scanner(System.in);
-            System.out.println("¿Cuánto desea retirar?");
+            logger.log(Level.INFO, "¿Cuánto desea retirar?");
             double importe = entrada.nextDouble();
             miCuenta.retirar(importe);
-            System.out.println("El saldo actual de su cuenta es "+miCuenta.estado()+" euros");
+            logger.log(Level.INFO, "El saldo actual de su cuenta es {0} euros", miCuenta.getSaldocuenta());
         } catch (Exception e) {
-            System.out.print("Fallo al retirar");
+            logger.log(Level.INFO, "Fallo al retirar");
         }
         try {
             Scanner entrada = new Scanner(System.in);
-            System.out.println("¿Cuánto desea ingresar en su cuenta?");
+            logger.log(Level.INFO, "¿Cuánto desea ingresar en su cuenta?");
             double importe = entrada.nextDouble();
             miCuenta.ingresar(importe);
-            System.out.println("El saldo actual de su cuenta es "+miCuenta.estado()+" euros");
+            logger.log(Level.INFO, "El saldo actual de su cuenta es {0} euros", miCuenta.getSaldocuenta());
         } catch (Exception e) {
-            System.out.print("Fallo al ingresar");
+            logger.log(Level.INFO, "Fallo al ingresar");
         }
+    }
+    public static void main(String[] args) {
+        operativaCuenta();
     }
 }
