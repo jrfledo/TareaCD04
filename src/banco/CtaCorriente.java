@@ -11,12 +11,12 @@ public class CtaCorriente {
     public CtaCorriente()
     {
     }
-    public CtaCorriente(String nombre, String cuenta, double saldo, double interes)
+    public CtaCorriente(String nombre, String cuenta, double saldo, double intereses)
     {
         this.nombre = nombre;
         this.cuenta = cuenta;
         this.saldocuenta = saldo;
-        this.interes = interes;
+        this.interes = intereses;
     }
     
     public void ingresar(double cantidad) throws CustomException
